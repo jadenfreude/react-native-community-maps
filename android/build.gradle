@@ -1,0 +1,20 @@
+buildscript {
+    // ...
+    dependencies {
+        // Make sure that AGP is at least at version 7.x
+        classpath("com.android.tools.build:gradle:7.0.4")
++       classpath("com.facebook.react:react-native-gradle-plugin")
++       classpath("de.undercouch:gradle-download-task:5.0.1")
+    }
+}
+allprojects {
+    repositories { /* ... */ }
+
+    configurations.all {
+        resolutionStrategy {
+            dependencySubstitution {
+                substitute module("com.facebook.react:react-native:+") with project(":ReactAndroid")
+            }
+        }
+    }
+}
